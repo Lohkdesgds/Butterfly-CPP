@@ -15,7 +15,8 @@ file(GLOB_RECURSE PROJECT_SOURCES
      "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-include(cmake/DPP.cmake)
+include(cmake/FindDPP.cmake)
+find_package(DPP REQUIRED)
 
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
@@ -24,8 +25,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE dpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
-else()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -O2)
-endif()
+#if(MSVC)
+#    target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+#else()
+#    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -O2)
+#endif()
