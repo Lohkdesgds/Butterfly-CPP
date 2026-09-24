@@ -4,6 +4,25 @@
 int main() {
 	dpp::cluster bot(std::getenv("BOT_TOKEN"));
 
+    bot.set_websocket_protocol(dpp::ws_etf);
+
+    bot.on_log([](const dpp::log_t& log) {
+        switch(log.severity) {
+        case dpp::loglevel::ll_info:
+            std::cout << "[I] " << log.message << std::endl;
+            break;
+        case dpp::loglevel::ll_warning:
+            std::cout << "[W] " << log.message << std::endl;
+            break;
+        case dpp::loglevel::ll_error:
+            std::cout << "[E] " << log.message << std::endl;
+            break;
+        case dpp::loglevel::ll_critical:
+            std::cout << "[C] " << log.message << std::endl;
+            break;
+        }
+    });
+
 	bot.on_slashcommand([](auto event) {
 		if (event.command.get_command_name() == "ping") {
 			event.reply("Pong!");
