@@ -15,8 +15,10 @@ file(GLOB_RECURSE PROJECT_SOURCES
      "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-include(cmake/FindDPP.cmake)
-find_package(DPP REQUIRED)
+
+include(cmake/makeDPP.cmake)
+#include(cmake/FindDPP.cmake)
+#find_package(DPP REQUIRED)
 
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
